@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ColorAddict</string>
+    <string name="reglages">REGLAGE</string>
+    <string name="bruitage">Bruitage</string>
+    <string name="musique">Musique</string>
+    <string name="menu">Menu</string>
+    <string name="regleclassique">regleClassique</string>
+    <string name="regles">REGLES</string>
+    <string name="titreRegleClassique">Règles mode classique</string>
+    <string name="regleClassique">Les règles son les suivantes …</string>
+    <string name="regleExpert">Les règles son les suivantes …</string>
+    <string name="titreRegleExpert">Règles mode expert</string>
+    <string name="affiche_des_scores">Affiche des scores</string>
+    <string name="cards_in_hand">cards in hand</string>
+    <string name="stack_of_cards">stack of cards</string>
+    <string name="drawCard">Piocher</string>
+</resources>
