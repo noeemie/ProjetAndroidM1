@@ -1,3 +1,6 @@
+/**
+ * @author Noémie Farizon
+ */
 package com.example.coloraddict;
 
 import androidx.appcompat.app.AppCompatActivity;

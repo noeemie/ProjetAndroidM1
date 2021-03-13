@@ -1,3 +1,7 @@
+/**
+ * @author Noémie Farizon
+ * @date 13.03.2021
+ */
 package com.example.coloraddict;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,29 +27,7 @@ public class Game extends AppCompatActivity {
     private Button mDrawACard;
     private LinearLayout mZoneDrag;
 
-    private Deck deck;
-    private int nbPlayerMax = 6;
-    private LinkedList players;
-
-    // pas fini
-    public Game () {
-        deck = new Deck();
-        players = new LinkedList<Player>();
-    }
-
-    public void addPlayer () {
-        if( Player.getNbPlayers() < nbPlayerMax){
-            players.add(new Player());
-        }
-    }
-
-    public void addPlayer (String pseudo) {
-        players.add(new Player(pseudo));
-    }
-
-    public Deck getDeck () {
-        return this.deck;
-    }
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +40,16 @@ public class Game extends AppCompatActivity {
         mZoneDrag = (LinearLayout) findViewById(R.id.zoneDrag);
 
         mDrawACard.setEnabled(true);
+
+        ////////////////
+        session = new Session(); // faire ca au moment ou on creer une salle
+        //recuperer le nombre de joueurs pour la partir grace a la page en question --> faire ca quand on appuye sur le bouton pour ajouter des joueurs
+        int i;
+        for(i = 0; i < nbJoueur; i++){
+            session.addPlayer(); // modifier car certain joueurs on des pseudo
+        }
+        session.initializeSession(); // initialisation des pioches perso de tout les joueurs et inistialisation des cartes --> faire ca quand on appuye sur le bouton pour lancer la partie
+        ////////////////
 
         mDrawACard.setOnClickListener(new View.OnClickListener() {
             @Override
