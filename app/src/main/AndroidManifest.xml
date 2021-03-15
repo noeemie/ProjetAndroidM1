@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ColorAddict">
-        <activity android:name=".Game"></activity>
+        <activity android:name=".PseudoActivity"></activity>
+        <activity android:name=".ModeActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".Game" />
         <activity android:name=".Score" />
         <activity android:name=".Rules" />
         <activity android:name=".Settings">

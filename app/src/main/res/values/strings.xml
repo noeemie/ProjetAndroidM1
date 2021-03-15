@@ -14,4 +14,10 @@
     <string name="cards_in_hand">cards in hand</string>
     <string name="stack_of_cards">stack of cards</string>
     <string name="drawCard">Piocher</string>
+    <string name="mode">MODE</string>
+    <string name="settings">Règles</string>
+    <string name="param">Paramètres</string>
+    <string name="todo">TODO</string>
+    <string name="todo2">TODO2</string>
+    <string name="todo3">TODO3</string>
 </resources>
