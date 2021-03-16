@@ -14,18 +14,23 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.WHITE;
+
 // ne pas oublier de remettre le nombre de joueurs à 0 en fin de partie
 public class Game extends AppCompatActivity {
 
-    private ImageView mCardStack;
-    private ImageView mHand;
+    private Button mCardStack;
+    private HorizontalScrollView mHand;
     private Button mDrawACard;
-    private LinearLayout mZoneDrag;
+    private LinearLayout mLayoutHand;
 
     private Session session;
 
@@ -34,108 +39,110 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        mCardStack = (ImageView) findViewById(R.id.cardStack);
-        mHand = (ImageView) findViewById(R.id.hand);
+        mCardStack = (Button) findViewById(R.id.cardStack);
+        mHand = (HorizontalScrollView) findViewById(R.id.hand);
         mDrawACard = (Button) findViewById(R.id.drawACard);
-        mZoneDrag = (LinearLayout) findViewById(R.id.zoneDrag);
+        mLayoutHand = (LinearLayout) findViewById(R.id.layoutHand);
 
-        mDrawACard.setEnabled(true);
+        mCardStack.setEnabled(true);
 
-        ////////////////
         session = new Session(); // faire ca au moment ou on creer une salle
         //recuperer le nombre de joueurs pour la partir grace a la page en question --> faire ca quand on appuye sur le bouton pour ajouter des joueurs
         int i;
-        for(i = 0; i < nbJoueur; i++){
+        for(i = 0; i < session.getNbPlayers(); i++){
             session.addPlayer(); // modifier car certain joueurs on des pseudo
         }
+        session.initializeMiddleStack();
         session.initializeSession(); // initialisation des pioches perso de tout les joueurs et inistialisation des cartes --> faire ca quand on appuye sur le bouton pour lancer la partie
-        ////////////////
+
+        ////////////////////////////////////////// initialiser l'ecran de jeu avec les cartes du joueur ////////////////////////////////
+        // ajout dynamic de boutons dans la main
+        for (int i = 0; i < player.getHandSize(); i++) {
+
+            final Button card = new Button(myView.getContext());
+            card.setText(player.getCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+            card.setId(i + 1);
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // action de jouer la carte
+                }
+            });
+
+            card.setBackgroundColor(WHITE);
+            card.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
+
+            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT);
+
+            mLayoutHand.addView(card, buttonParams);
+        }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         mDrawACard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // The user just clicked
                 // pick a card in you own stack of cards
-            }
-        });
+                session.getPlayer().getRandomCardStack();
+                Button newCard = new Button(myView.getContext());
+                newCard.setText(player.getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                newCard.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // action de jouer la carte
+                    }
+                });
 
-        mHand.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                ClipData.Item item = new ClipData.Item((CharSequence)v.getTag());
-                String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+                newCard.setBackgroundColor(WHITE);
+                newCard.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
+                newCard.setBorder(2, BLACK);
 
-                ClipData dragData = new ClipData(v.getTag().toString(),mimeTypes, item);
-                View.DragShadowBuilder myShadow = new View.DragShadowBuilder(mHand);
+                LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
 
-                v.startDrag(dragData,myShadow,null,0);
-                return true;
-            }
-        });
-
-        mHand.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                switch(event.getAction()) {
-                    case DragEvent.ACTION_DRAG_STARTED:
-                        mZoneDrag = (RelativeLayout.LayoutParams)v.getLayoutParams();
-                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_STARTED");
-
-                        // Do nothing
-                        break;
-
-                    case DragEvent.ACTION_DRAG_ENTERED:
-                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_ENTERED");
-                        int x_cord = (int) event.getX();
-                        int y_cord = (int) event.getY();
-                        break;
-
-                    case DragEvent.ACTION_DRAG_EXITED :
-                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_EXITED");
-                        x_cord = (int) event.getX();
-                        y_cord = (int) event.getY();
-                        layoutParams.leftMargin = x_cord;
-                        layoutParams.topMargin = y_cord;
-                        v.setLayoutParams(layoutParams);
-                        break;
-
-                    case DragEvent.ACTION_DRAG_LOCATION  :
-                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_LOCATION");
-                        x_cord = (int) event.getX();
-                        y_cord = (int) event.getY();
-                        break;
-
-                    case DragEvent.ACTION_DRAG_ENDED   :
-                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_ENDED");
-
-                        // Do nothing
-                        break;
-
-                    case DragEvent.ACTION_DROP:
-                        Log.d(msg, "ACTION_DROP event");
-
-                        // Do nothing
-                        break;
-                    default: break;
-                }
-                return true;
-            }
-        });
-
-        mHand.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    ClipData data = ClipData.newPlainText("", "");
-                    View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(mHand);
-
-                    mHand.startDrag(data, shadowBuilder, mHand, 0);
-                    mHand.setVisibility(View.INVISIBLE);
-                    return true;
-                } else {
-                    return false;
+                mLayoutHand.addView(newCard, buttonParams);
+                // desactiver le bouton de pioche quand la pioche est vide
+                if(session.getPlayer().isEmptyStack()){
+                    mDrawACard.setEnabled(true);
                 }
             }
         });
+
+
+        /////////////////////////////////////////// jouer une carte ////////////////////////////////////////
+        // retirer dynamiquement des boutons de la liste
+        //prendre la carte de la liste
+        Card cardPlay = player.getCardHand();
+        // tester si la carte est bonne
+        if(cardPlay.isOK()){
+            // mettre son texte dans le bouton du centre
+            mCardStack.setText(player.getCardHand().getNameColor().toString());
+            // picher automatiquement une carte
+            player.getRandomCardStack();
+            Button newCardPlay = new Button(myView.getContext());
+            newCardPlay.setText(player.getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+            newCardPlay.setOnClickListener(this);
+
+            newCardPlay.setBackgroundColor(WHITE);
+            newCardPlay.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
+
+            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT);
+
+            mLayoutHand.addView(newCardPlay, buttonParams);
+        }
+        // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
+        if(player.isEmptyHand()){
+            player.win();
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN ?
+        // une fois la partie terminée utiliser finish quand on clic sur le bouton de retour au menu dans la page des scores
+        session.finish();
     }
 }

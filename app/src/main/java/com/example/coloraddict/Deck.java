@@ -37,7 +37,7 @@ public class Deck {
         return _instance;
     }
 
-    // probleme car il faut retirer les cartes après les avoir prise pour eviter doublons -> piocher
+    // probleme car il faut retirer les cartes après les avoir prise pour eviter doublons -> regarder si ca ne trouche pas au deck mais plutot a l'instance
     /**
      * method to take a card in the deck randomly
      * @return card a card of the deck
@@ -47,6 +47,7 @@ public class Deck {
         if(!cards.isEmpty()){
             int index = randomGenerator.nextInt(cards.size());
             card = (Card) cards.get(index);
+            cards.remove(index);
         }
         return card;
     }

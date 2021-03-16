@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Card<elements> {
 
-    public enum Color { ROUGE, BLEU, VERT, JAUNE, VIOLET, MARRON, ORANGE, ROSE, GRIS, NOIR };
+    public enum Color { RED, BLUE, GREEN, YELLOW, VIOLET, BROWN, ORANGE, ROSE, GREY, BLACK };
     private Color color;
     private Color nameColor;
     private Color[] allColors = Color.values();
@@ -41,5 +41,13 @@ public class Card<elements> {
      */
     public Color getNameColor() {
         return nameColor;
+    }
+
+    public String toString() {
+        return "" + this.nameColor;
+    }
+
+    public boolean isOK(Card card) {
+        return ((this.color == card.getColor())||(this.nameColor == card.getNameColor()))||((this.color == card.getColor())&&(this.nameColor == card.getNameColor()));
     }
 }

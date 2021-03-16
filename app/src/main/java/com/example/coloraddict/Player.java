@@ -11,7 +11,7 @@ public class Player {
 
     private static int nbPlayers = 0;
 
-    private enum State {WIN, LOOSE, PLAY, WAIT};
+    private enum State {WIN, PLAY, WAIT};
     private State state;
 
     private String pseudo;
@@ -46,7 +46,7 @@ public class Player {
      */
     public void initializeCardStack(Session session) {
         int i;
-        for (i = 0; i < (session.getDeck().getSize() / nbPlayers); i++) {
+        for (i = 0; i < (session.getDeck().getSize() / nbPlayers); i++) { // faire anttention quand il y a un chiffre impaire de carte/ nombre pair de joueur et inversement
             cardStack.add(session.getDeck().getRandomCard());
         }
     }
@@ -70,14 +70,11 @@ public class Player {
             int index = randomGenerator.nextInt(cardStack.size());
             hand.add((Card) cardStack.get(index));
             cardStack.remove(index); // si on la met dans la main on doit la retirer de la pile
-        } else {
-            System.out.println("Plus de carte à piocher !");
         }
     }
 
     /**
      * pickup a card from our own stack
-     *
      * @return nbPlayers the number of player for the actual session
      */
     public static int getNbPlayers() {
@@ -92,17 +89,52 @@ public class Player {
     /**
      * method to take a card to play
      */
-    // finir / revoir
-    // tester la carte avant de la poser pour savoir si correct renvoie un message d'erreur sinon
-
-    // juste prendre une carte dans la main, c'est la session qui verrifie et qui fait repiocher automotiquement si ok
     public Card getCardHand(int index) {
-        Card card = (Card) hand.get(index);
-        return card;
+        // juste prendre une carte dans la main, c'est la session qui verrifie et qui fait repiocher automotiquement si ok
+        return (Card) hand.get(index);
     }
 
-    // retire la carte de la main du joueur
+    /**
+     * method to get the last card of the hand (use after pick up a card)
+     * @return return the last card of the list
+     */
+    public Card getLastCardHand() {
+        return (Card) hand.get(hand.size() - 1);
+    }
+
+    /**
+     * method to remove a card from the hand of the player
+     * @param index the place of the card in the hand
+     */
     public void removeCardHand(int index){
         hand.remove(index);
+    }
+
+    /**
+     * method to get the size of the hand of the player
+     * @return the size of the hand
+     */
+    public int getHandSize() {
+        return hand.size();
+    }
+
+    /**
+     * method to know if the player win
+     * @return true if the hand is empty
+     */
+    public boolean isEmptyHand(){
+        return hand.isEmpty();
+    }
+
+    /**
+     * method to know if the player can pick up a card in the stack
+     * @return true if the stack is empty
+     */
+    public boolean isEmptyStack(){
+        return cardStack.isEmpty();
+    }
+
+    public void win() {
+        state = State.WIN;
     }
 }

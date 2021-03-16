@@ -13,7 +13,7 @@ public class Session {
     private Deck deck;
     private int nbPlayerMax = 6;
     private LinkedList<Player> players;
-    private Stack middleStack;
+    private Card middleStack;
 
     // pas fini
 
@@ -22,7 +22,7 @@ public class Session {
      */
     public Session () {
         deck = new Deck();
-        middleStack = new Stack();
+        middleStack = new Card();
         players = new LinkedList<Player>();
     }
 
@@ -32,6 +32,8 @@ public class Session {
     public void addPlayer () {
         if( Player.getNbPlayers() < nbPlayerMax){
             players.add(new Player());
+        }else{
+            System.out.println("nombre de joueurs max atteint");
         }
     }
 
@@ -43,6 +45,19 @@ public class Session {
         players.add(new Player(pseudo));
     }
 
+    public int getNbPlayers() {
+        return players.size();
+    }
+
+    /**
+     * method to get a player of the list
+     * @param index the place of the player in the list
+     * @return a player
+     */
+    public Player getPlayer(int index){
+        return players.get(index);
+    }
+
     /**
      * method to get the deck for the session
      * @return deck a copy of the initial deck
@@ -52,7 +67,14 @@ public class Session {
     }
 
     /**
-     * initialize stacks and hands for all players
+     * method to initialize the middle stack with a card of the deck before starting the game
+     */
+    public void initializeMiddleStack() {
+        middleStack = deck.getRandomCard();
+    }
+
+    /**
+     * initialize stacks and hands for all players (use after initializeMiddleStack)
      */
     public void initializeSession(){
         int i;
@@ -70,8 +92,11 @@ public class Session {
         players.clear();
     }
 
-    // permettre de rejoueur avec les memes joeurs ?
-    public void replay(){
-
+    /**
+     * method to know if the session is over
+     * @return true if the session is over
+     */
+    public boolean isFinished(){
+        return ;
     }
 }

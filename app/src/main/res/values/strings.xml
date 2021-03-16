@@ -20,4 +20,5 @@
     <string name="todo">TODO</string>
     <string name="todo2">TODO2</string>
     <string name="todo3">TODO3</string>
+    <string name="cardStack">cardStack</string>
 </resources>

@@ -11,29 +11,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
+        <Button
             android:id="@+id/cardStack"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:contentDescription="@string/stack_of_cards"
-            android:scaleType="center"
-            app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
+            android:backgroundTint="@color/white"
+            android:text="@string/cardStack"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
 
-        <LinearLayout
-            android:id="@+id/zoneDrag"
-            android:layout_width="match_parent"
+        <HorizontalScrollView
+            android:id="@+id/hand"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:orientation="horizontal">
+            android:layout_weight="0.5">
 
-            <ImageView
-                android:id="@+id/hand"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/layoutHand"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/cards_in_hand"
-                app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
-        </LinearLayout>
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
 
         <Button
             android:id="@+id/drawACard"
