@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class Score extends AppCompatActivity {
+public class ScoreActivity extends AppCompatActivity {
     private ScrollView mScrollScore;
     private Button mButtonMenu;
     private TextView mScoreText;

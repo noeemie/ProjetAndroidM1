@@ -26,7 +26,7 @@ import static android.graphics.Color.BLACK;
 import static android.graphics.Color.LTGRAY;
 import static android.graphics.Color.WHITE;
 
-public class Game extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     private Button mCardStack;
     private HorizontalScrollView mHand;

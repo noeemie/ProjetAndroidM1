@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 
-public class Settings extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
     private Switch mMusicSwitch;
     private Switch mSoundSwitch;
     private Button mMenuButton;
