@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -22,9 +23,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static android.graphics.Color.BLACK;
+import static android.graphics.Color.LTGRAY;
 import static android.graphics.Color.WHITE;
 
-// ne pas oublier de remettre le nombre de joueurs à 0 en fin de partie
 public class Game extends AppCompatActivity {
 
     private Button mCardStack;
@@ -59,16 +60,41 @@ public class Game extends AppCompatActivity {
         // ajout dynamic de boutons dans la main
         for (int i = 0; i < player.getHandSize(); i++) {
 
-            final Button card = new Button(myView.getContext());
+            final Button card = new Button(this);
             card.setText(player.getCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
             card.setId(i + 1);
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    // action de jouer la carte
+                public void onClick(View v) {// action de jouer la carte
+                    //prendre la carte de la liste
+                    Card cardPlay2 = player.getCardHand();
+                    // tester si la carte est bonne
+                    if(cardPlay2.isOK()){
+                        // mettre son texte dans le bouton du centre
+                        mCardStack.setText(player.getCardHand().getNameColor().toString());
+                        // picher automatiquement une carte
+                        player.getRandomCardStack();
+                        Button newCardPlay1 = new Button(v.getContext());
+                        newCardPlay1.setText(player.getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                        newCardPlay1.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
+
+                        newCardPlay1.setOnClickListener(this.onClick(v));
+
+                        newCardPlay1.setBackgroundColor(LTGRAY);
+
+                        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT);
+
+                        mLayoutHand.addView(newCardPlay1, buttonParams);
+
+                        // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
+                        if(player.isEmptyHand()){
+                            player.win();
+                        }
+                    }
                 }
             });
-
             card.setBackgroundColor(WHITE);
             card.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
 
@@ -86,12 +112,39 @@ public class Game extends AppCompatActivity {
                 // The user just clicked
                 // pick a card in you own stack of cards
                 session.getPlayer().getRandomCardStack();
-                Button newCard = new Button(myView.getContext());
+                Button newCard = new Button(this);
                 newCard.setText(player.getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
                 newCard.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        // action de jouer la carte
+                    public void onClick(View v) {// action de jouer la carte
+                        //prendre la carte de la liste
+                        Card cardPlay1 = player.getCardHand();
+                        // tester si la carte est bonne
+                        if(cardPlay1.isOK()){
+                            // mettre son texte dans le bouton du centre
+                            mCardStack.setText(player.getCardHand().getNameColor().toString());
+                            // picher automatiquement une carte
+                            player.getRandomCardStack();
+                            Button newCardPlay2 = new Button(v.getContext());
+                            newCardPlay2.setText(player.getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                            newCardPlay2.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
+
+                            newCardPlay2.setOnClickListener(this.onClick(v));
+
+                            newCardPlay2.setBackgroundColor(LTGRAY);
+
+
+                            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.MATCH_PARENT);
+
+                            mLayoutHand.addView(newCardPlay2, buttonParams);
+
+                            // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
+                            if(player.isEmptyHand()){
+                                player.win();
+                            }
+                        }
                     }
                 });
 
@@ -110,36 +163,6 @@ public class Game extends AppCompatActivity {
                 }
             }
         });
-
-
-        /////////////////////////////////////////// jouer une carte ////////////////////////////////////////
-        // retirer dynamiquement des boutons de la liste
-        //prendre la carte de la liste
-        Card cardPlay = player.getCardHand();
-        // tester si la carte est bonne
-        if(cardPlay.isOK()){
-            // mettre son texte dans le bouton du centre
-            mCardStack.setText(player.getCardHand().getNameColor().toString());
-            // picher automatiquement une carte
-            player.getRandomCardStack();
-            Button newCardPlay = new Button(myView.getContext());
-            newCardPlay.setText(player.getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
-            newCardPlay.setOnClickListener(this);
-
-            newCardPlay.setBackgroundColor(WHITE);
-            newCardPlay.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
-
-            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT);
-
-            mLayoutHand.addView(newCardPlay, buttonParams);
-        }
-        // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
-        if(player.isEmptyHand()){
-            player.win();
-        }
-        ///////////////////////////////////////////////////////////////////////////////////////////////////
 
         // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN ?
         // une fois la partie terminée utiliser finish quand on clic sur le bouton de retour au menu dans la page des scores

@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Card<elements> {
 
-    public enum Color { RED, BLUE, GREEN, YELLOW, VIOLET, BROWN, ORANGE, ROSE, GREY, BLACK };
+    public enum Color { RED, BLUE, GREEN, YELLOW, VIOLET, BROWN, ORANGE, ROSE, GRAY, BLACK };
     private Color color;
     private Color nameColor;
     private Color[] allColors = Color.values();

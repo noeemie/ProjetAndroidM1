@@ -97,6 +97,6 @@ public class Session {
      * @return true if the session is over
      */
     public boolean isFinished(){
-        return ;
+        return ;// quand tout les n-1 joueurs sont de status WIN
     }
 }
