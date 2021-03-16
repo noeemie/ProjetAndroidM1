@@ -63,7 +63,7 @@ public class Player {
     }
 
     /**
-     * pickup a card from our own stack
+     * pickup a card from our own stack and set it in our own hand
      */
     public void getRandomCardStack() {
         if (!cardStack.isEmpty()) {

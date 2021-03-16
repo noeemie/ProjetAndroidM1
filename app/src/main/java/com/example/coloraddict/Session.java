@@ -5,6 +5,7 @@
 package com.example.coloraddict;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 // vider la liste de joueur en fin de session et mettre le nombre de joueur à 0
@@ -98,5 +99,14 @@ public class Session {
      */
     public boolean isFinished(){
         return ;// quand tout les n-1 joueurs sont de status WIN
+    }
+
+    /**
+     * method to get the next player of the list
+     * @return the next item of the list
+     */
+    public Player nextPlayer(){
+        Iterator<Player> it = players.iterator();
+        return it.next();
     }
 }

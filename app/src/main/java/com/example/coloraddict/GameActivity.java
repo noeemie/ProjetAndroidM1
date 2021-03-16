@@ -58,45 +58,50 @@ public class GameActivity extends AppCompatActivity {
 
         ////////////////////////////////////////// initialiser l'ecran de jeu avec les cartes du joueur ////////////////////////////////
         // ajout dynamic de boutons dans la main
-        for (int i = 0; i < player.getHandSize(); i++) {
+        for (int i = 0; i < session.getPlayer().getHandSize(); i++) {
 
             final Button card = new Button(this);
-            card.setText(player.getCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+            card.setText(session.getPlayer().getCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
             card.setId(i + 1);
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {// action de jouer la carte
                     //prendre la carte de la liste
-                    Card cardPlay2 = player.getCardHand();
+                    Card cardPlay2 = session.getPlayer().getCardHand();
                     // tester si la carte est bonne
                     if(cardPlay2.isOK()){
                         // mettre son texte dans le bouton du centre
-                        mCardStack.setText(player.getCardHand().getNameColor().toString());
-                        // picher automatiquement une carte
-                        player.getRandomCardStack();
-                        Button newCardPlay1 = new Button(v.getContext());
-                        newCardPlay1.setText(player.getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
-                        newCardPlay1.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
+                        mCardStack.setText(session.getPlayer().getCardHand().getNameColor().toString());
+                        // retirer la carte de la main apres l'avoir jouée
+                        mLayoutHand.removeView(card);
+                        if(session.getPlayer().getHandSize() > 3){
+                            // picher automatiquement une carte
+                            session.getPlayer().getRandomCardStack();
+                            Button newCardPlay1 = new Button(v.getContext());
+                            newCardPlay1.setText(session.getPlayer().getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                            newCardPlay1.setTextColor(session.getPlayer().getCardHand().getColor()); // couleur du texte de la carte du joueur
 
-                        newCardPlay1.setOnClickListener(this.onClick(v));
+                            newCardPlay1.setOnClickListener(this.onClick(v));
 
-                        newCardPlay1.setBackgroundColor(LTGRAY);
+                            newCardPlay1.setBackgroundColor(LTGRAY);
 
-                        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.MATCH_PARENT);
+                            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.MATCH_PARENT);
 
-                        mLayoutHand.addView(newCardPlay1, buttonParams);
-
-                        // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
-                        if(player.isEmptyHand()){
-                            player.win();
+                            mLayoutHand.addView(newCardPlay1, buttonParams);
                         }
+                        // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
+                        if(session.getPlayer().isEmptyHand()){
+                            session.getPlayer().win();
+                        }
+                        // faire passer au joueur suivant
+
                     }
                 }
             });
-            card.setBackgroundColor(WHITE);
-            card.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
+            card.setBackgroundColor(LTGRAY);
+            card.setTextColor(session.getPlayer().getCardHand().getColor()); // couleur du texte de la carte du joueur
 
             LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -113,26 +118,27 @@ public class GameActivity extends AppCompatActivity {
                 // pick a card in you own stack of cards
                 session.getPlayer().getRandomCardStack();
                 Button newCard = new Button(this);
-                newCard.setText(player.getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                newCard.setText(session.getPlayer().getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
                 newCard.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {// action de jouer la carte
                         //prendre la carte de la liste
-                        Card cardPlay1 = player.getCardHand();
+                        Card cardPlay1 = session.getPlayer().getCardHand();
                         // tester si la carte est bonne
                         if(cardPlay1.isOK()){
                             // mettre son texte dans le bouton du centre
-                            mCardStack.setText(player.getCardHand().getNameColor().toString());
+                            mCardStack.setText(session.getPlayer().getCardHand().getNameColor().toString());
+                            // retirer la carte de la main apres l'avoir jouée
+                            mLayoutHand.removeView(cardPlay1);
                             // picher automatiquement une carte
-                            player.getRandomCardStack();
+                            session.getPlayer().getRandomCardStack();
                             Button newCardPlay2 = new Button(v.getContext());
-                            newCardPlay2.setText(player.getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
-                            newCardPlay2.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
+                            newCardPlay2.setText(session.getPlayer().getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                            newCardPlay2.setTextColor(session.getPlayer().getCardHand().getColor()); // couleur du texte de la carte du joueur
 
                             newCardPlay2.setOnClickListener(this.onClick(v));
 
                             newCardPlay2.setBackgroundColor(LTGRAY);
-
 
                             LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -141,16 +147,15 @@ public class GameActivity extends AppCompatActivity {
                             mLayoutHand.addView(newCardPlay2, buttonParams);
 
                             // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
-                            if(player.isEmptyHand()){
-                                player.win();
+                            if(session.getPlayer().isEmptyHand()){
+                                session.getPlayer().win();
                             }
                         }
                     }
                 });
 
-                newCard.setBackgroundColor(WHITE);
-                newCard.setTextColor(player.getCardHand().getColor()); // couleur du texte de la carte du joueur
-                newCard.setBorder(2, BLACK);
+                newCard.setBackgroundColor(LTGRAY);
+                newCard.setTextColor(session.getPlayer().getCardHand().getColor()); // couleur du texte de la carte du joueur
 
                 LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
