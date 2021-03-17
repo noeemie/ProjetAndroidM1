@@ -134,7 +134,18 @@ public class Player {
         return cardStack.isEmpty();
     }
 
+    /**
+     * method to set the state WIN for a player
+     */
     public void win() {
         state = State.WIN;
+    }
+
+    /**
+     * method to know if the player is steel playing
+     * @return true if the state is WIN
+     */
+    public boolean isStateWin() {
+        return state == State.WIN;
     }
 }

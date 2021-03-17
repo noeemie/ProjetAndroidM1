@@ -88,9 +88,8 @@ public class Session {
     /**
      * method to use at the end of the session to reset
      */
-    public void finish() {
+    public void reset() {
         Player.resetNbPlayers();
-        players.clear();
     }
 
     /**
@@ -98,7 +97,14 @@ public class Session {
      * @return true if the session is over
      */
     public boolean isFinished(){
-        return ;// quand tout les n-1 joueurs sont de status WIN
+        int i;
+        int playerWin = 0;
+        for(i = 0; i < players.size(); i++){
+            if(players.get(i).isStateWin()){
+                playerWin++;
+            }
+        }
+        return (playerWin == players.size() - 1);// quand tout les n-1 joueurs sont de status WIN
     }
 
     /**

@@ -48,6 +48,7 @@ public class GameActivity extends AppCompatActivity {
         mCardStack.setEnabled(true);
 
         session = new Session(); // faire ca au moment ou on creer une salle
+        session.reset(); // pour remettre a 0 le nombre de joueurs (variable de classe)
         //recuperer le nombre de joueurs pour la partir grace a la page en question --> faire ca quand on appuye sur le bouton pour ajouter des joueurs
         int i;
         for(i = 0; i < session.getNbPlayers(); i++){
@@ -209,8 +210,9 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN ?
-        // une fois la partie terminée utiliser finish quand on clic sur le bouton de retour au menu dans la page des scores
-        session.finish();
+        // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN
+        if(session.isFinished()){
+            // aller a l'écran des scores
+        }
     }
 }
