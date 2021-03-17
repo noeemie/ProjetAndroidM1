@@ -22,4 +22,12 @@ public class MenuActivity extends AppCompatActivity {
     public void goToActivity(View v){
         startActivity(new Intent(MenuActivity.this, ModeActivity.class));
     }
+
+    public void goToRules(View v){
+        startActivity(new Intent(MenuActivity.this, RulesActivity.class));
+    }
+
+    public void goToSettings(View v){
+        startActivity(new Intent(MenuActivity.this, SettingsActivity.class));
+    }
 }
