@@ -73,6 +73,10 @@ public class GameActivity extends AppCompatActivity {
                     Card cardPlay2 = session.getPlayer().getCardHand();
                     // tester si la carte est bonne
                     if(cardPlay2.isOK()){
+                        // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN
+                        if(session.isFinished()){
+                            // aller a l'écran des scores
+                        }
                         // mettre son texte dans le bouton du centre
                         mCardStack.setText(session.getPlayer().getCardHand().getNameColor().toString());
                         // retirer la carte de la main apres l'avoir jouée
@@ -91,6 +95,10 @@ public class GameActivity extends AppCompatActivity {
                                     Card cardPlay2 = session.getPlayer().getCardHand();
                                     // tester si la carte est bonne
                                     if(cardPlay2.isOK()){
+                                        // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN
+                                        if(session.isFinished()){
+                                            // aller a l'écran des scores
+                                        }
                                         // mettre son texte dans le bouton du centre
                                         mCardStack.setText(session.getPlayer().getCardHand().getNameColor().toString());
                                         // retirer la carte de la main apres l'avoir jouée
@@ -167,6 +175,10 @@ public class GameActivity extends AppCompatActivity {
                         Card cardPlay1 = session.getPlayer().getCardHand();
                         // tester si la carte est bonne
                         if(cardPlay1.isOK()){
+                            // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN
+                            if(session.isFinished()){
+                                // aller a l'écran des scores
+                            }
                             // mettre son texte dans le bouton du centre
                             mCardStack.setText(session.getPlayer().getCardHand().getNameColor().toString());
                             // retirer la carte de la main apres l'avoir jouée
@@ -209,10 +221,5 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN
-        if(session.isFinished()){
-            // aller a l'écran des scores
-        }
     }
 }
