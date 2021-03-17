@@ -66,6 +66,8 @@ public class GameActivity extends AppCompatActivity {
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {// action de jouer la carte
+                    // reference pour faire le onClick de manière récursive
+                    final View.OnClickListener ref1 = this;
                     //prendre la carte de la liste
                     Card cardPlay2 = session.getPlayer().getCardHand();
                     // tester si la carte est bonne
@@ -81,7 +83,43 @@ public class GameActivity extends AppCompatActivity {
                             newCardPlay1.setText(session.getPlayer().getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
                             newCardPlay1.setTextColor(session.getPlayer().getCardHand().getColor()); // couleur du texte de la carte du joueur
 
-                            newCardPlay1.setOnClickListener(this.onClick(v));
+                            newCardPlay1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {// action de jouer la carte
+                                    //prendre la carte de la liste
+                                    Card cardPlay2 = session.getPlayer().getCardHand();
+                                    // tester si la carte est bonne
+                                    if(cardPlay2.isOK()){
+                                        // mettre son texte dans le bouton du centre
+                                        mCardStack.setText(session.getPlayer().getCardHand().getNameColor().toString());
+                                        // retirer la carte de la main apres l'avoir jouée
+                                        mLayoutHand.removeView(card);
+                                        if(session.getPlayer().getHandSize() > 3){
+                                            // picher automatiquement une carte
+                                            session.getPlayer().getRandomCardStack();
+                                            Button newCardPlay1 = new Button(v.getContext());
+                                            newCardPlay1.setText(session.getPlayer().getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                                            newCardPlay1.setTextColor(session.getPlayer().getCardHand().getColor()); // couleur du texte de la carte du joueur
+
+                                            newCardPlay1.setOnClickListener(ref1);
+
+                                            newCardPlay1.setBackgroundColor(LTGRAY);
+
+                                            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                                    LinearLayout.LayoutParams.MATCH_PARENT);
+
+                                            mLayoutHand.addView(newCardPlay1, buttonParams);
+                                        }
+                                        // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
+                                        if(session.getPlayer().isEmptyHand()){
+                                            session.getPlayer().win();
+                                        }
+                                        // faire passer au joueur suivant
+
+                                    }
+                                }
+                            }););
 
                             newCardPlay1.setBackgroundColor(LTGRAY);
 
@@ -118,6 +156,8 @@ public class GameActivity extends AppCompatActivity {
                 // pick a card in you own stack of cards
                 session.getPlayer().getRandomCardStack();
                 Button newCard = new Button(this);
+                // reference pour faire le onClick de manière récursive
+                final View.OnClickListener ref2 = this;
                 newCard.setText(session.getPlayer().getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
                 newCard.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -136,7 +176,7 @@ public class GameActivity extends AppCompatActivity {
                             newCardPlay2.setText(session.getPlayer().getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
                             newCardPlay2.setTextColor(session.getPlayer().getCardHand().getColor()); // couleur du texte de la carte du joueur
 
-                            newCardPlay2.setOnClickListener(this.onClick(v));
+                            newCardPlay2.setOnClickListener(ref2);
 
                             newCardPlay2.setBackgroundColor(LTGRAY);
 
