@@ -81,7 +81,7 @@ public class GameActivity extends AppCompatActivity {
                         mCardStack.setText(session.getPlayer().getCardHand().getNameColor().toString());
                         // retirer la carte de la main apres l'avoir jouée
                         mLayoutHand.removeView(card);
-                        if(session.getPlayer().getHandSize() > 3){
+                        if(session.getPlayer().getHandSize() < 3){
                             // picher automatiquement une carte
                             session.getPlayer().getRandomCardStack();
                             Button newCardPlay1 = new Button(v.getContext());
@@ -128,7 +128,7 @@ public class GameActivity extends AppCompatActivity {
 
                                     }
                                 }
-                            }););
+                            });
 
                             newCardPlay1.setBackgroundColor(LTGRAY);
 
