@@ -6,15 +6,17 @@
     <string name="menu">Menu</string>
     <string name="regleclassique">regleClassique</string>
     <string name="regles">REGLES</string>
-    <string name="titreRegleClassique">Règles mode classique</string>
-    <string name="regleClassique">Les règles son les suivantes …</string>
-    <string name="regleExpert">Les règles son les suivantes …</string>
-    <string name="titreRegleExpert">Règles mode expert</string>
+    <string name="titreRegleClassique">Règles</string>
+    <string name="regleClassique">L’objectif est de se débarrasser le plus vite possible de toutes ses cartes.
+Mélanger et distribuer toutes les cartes. Chaque joueur a sa pioche devant
+lui et 3 cartes en main.
+Dès que le donneur retourne au centre de la table la première carte de sa
+pioche, les joueurs posent une des cartes de leur main</string>
     <string name="affiche_des_scores">Affiche des scores</string>
     <string name="cards_in_hand">cards in hand</string>
     <string name="stack_of_cards">stack of cards</string>
     <string name="drawCard">Piocher</string>
-    <string name="mode">MODE</string>
+    <string name="jouer">JOUER</string>
     <string name="settings">Règles</string>
     <string name="param">Paramètres</string>
     <string name="todo">TODO</string>

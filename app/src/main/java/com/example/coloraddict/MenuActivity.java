@@ -30,4 +30,8 @@ public class MenuActivity extends AppCompatActivity {
     public void goToSettings(View v){
         startActivity(new Intent(MenuActivity.this, SettingsActivity.class));
     }
+
+    public void goToPseudo(View v){
+        startActivity(new Intent(MenuActivity.this, PseudoActivity.class));
+    }
 }

@@ -48,6 +48,6 @@ public class Card<elements> {
     }
 
     public boolean isOK(Card card) {
-        return ((this.color == card.getColor())||(this.nameColor == card.getNameColor()))||((this.color == card.getColor())&&(this.nameColor == card.getNameColor()));
+        return ((this.color == card.getColor())||(this.nameColor == card.getNameColor()))||((this.color == card.getColor())&&(this.nameColor == card.getNameColor()))||((this.color == card.getNameColor())||(this.nameColor == card.getColor()));
     }
 }
