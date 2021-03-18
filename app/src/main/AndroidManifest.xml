@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ColorAddict">
         <activity android:name=".PseudoActivity"></activity>
-        <activity android:name=".ModeActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".ScoreActivity" />
         <activity android:name=".RulesActivity" />

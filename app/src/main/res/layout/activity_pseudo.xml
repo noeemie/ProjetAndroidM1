@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:onClick="goToMenu1"/>
 
     <Button
         android:id="@+id/button4"
@@ -26,7 +27,8 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/imageButton4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <Button
         android:id="@+id/button3"

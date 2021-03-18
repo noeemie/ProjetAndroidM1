@@ -29,10 +29,10 @@ import java.util.Set;
 public class BluetoothActivity extends AppCompatActivity {
     private static final String TAG = "BluetoothActivity";
 
-    CheckBox enable_bt, visible_bt;
-    ImageView search_bt;
+    private CheckBox enable_bt, visible_bt;
+    private ImageView search_bt;
     //TextView name_bt;
-    ListView listView;
+    private ListView listView;
 
 
 
@@ -41,16 +41,16 @@ public class BluetoothActivity extends AppCompatActivity {
 
     public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
 
-    BluetoothAdapter mBluetoothAdapter;
-    Button btnEnableDisable_Discoverable;
+    private BluetoothAdapter mBluetoothAdapter;
+    private Button btnEnableDisable_Discoverable;
 
-    ArrayAdapter adapterName;
-    ArrayAdapter adapterAddress;
-    ArrayList listName= new ArrayList();
-    ArrayList listAddress = new ArrayList();
+    private ArrayAdapter adapterName;
+    private ArrayAdapter adapterAddress;
+    private ArrayList listName= new ArrayList();
+    private ArrayList listAddress = new ArrayList();
 
-    ListView lvNameNewDevices;
-    ListView lvAddressNewDevices;
+    private ListView lvNameNewDevices;
+    private ListView lvAddressNewDevices;
 
 
     @Override

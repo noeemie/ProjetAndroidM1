@@ -47,6 +47,8 @@
             android:text="@string/menu"
             android:textAlignment="center"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goToMenu"
+            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

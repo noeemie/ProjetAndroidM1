@@ -61,7 +61,8 @@
             android:text="@string/menu"
             android:textAlignment="center"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goToMenu2"/>
 
     </LinearLayout>
 
