@@ -17,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        PlayBackgroundSound();
     }
 
     public void goToRules(View v){
@@ -29,5 +30,10 @@ public class MenuActivity extends AppCompatActivity {
 
     public void goToPseudo(View v){
         startActivity(new Intent(MenuActivity.this, PseudoActivity.class));
+    }
+
+    public void PlayBackgroundSound() {
+        Intent intent = new Intent(MenuActivity.this, BackgroundSoundService.class);
+        startService(intent);
     }
 }
