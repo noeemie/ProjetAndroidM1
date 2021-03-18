@@ -17,4 +17,8 @@ public class PseudoActivity extends AppCompatActivity {
     public void goToBluetooth(View v){
         startActivity(new Intent(PseudoActivity.this, BluetoothActivity.class));
     }
+
+    public void goToMenu1(View v){
+        startActivity(new Intent(PseudoActivity.this, MenuActivity.class));
+    }
 }

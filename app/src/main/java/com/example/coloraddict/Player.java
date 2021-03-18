@@ -90,7 +90,7 @@ public class Player {
      * method to take a card to play
      */
     public Card getCardHand(int index) {
-        // juste prendre une carte dans la main, c'est la session qui verrifie et qui fait repiocher automotiquement si ok
+        // juste prendre une carte dans la main, c'est la session qui verifie et qui fait repiocher automatiquement si ok
         return (Card) hand.get(index);
     }
 

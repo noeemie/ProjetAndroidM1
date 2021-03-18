@@ -5,6 +5,7 @@ package com.example.coloraddict;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,5 +29,9 @@ public class RulesActivity extends AppCompatActivity {
                 // come back to Menu
             }
         });
+    }
+
+    public void goToMenu(View v){
+        startActivity(new Intent(RulesActivity.this, MenuActivity.class));
     }
 }

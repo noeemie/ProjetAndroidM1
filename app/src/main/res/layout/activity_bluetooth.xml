@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent"
+    tools:context=".BluetoothActivity">
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enable_bt"
+        android:text="Activé"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/visible_bt"
+        android:text="Visible"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name_bt"
+        android:text="nom bluetooth"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_bt"
+        android:src="@drawable/ic_action_search"
+        android:padding="5dp"
+        android:layout_below="@+id/name_bt"
+        android:layout_centerHorizontal="true"
+        android:background="#2196F3"
+        android:onClick="btnDiscover"/>
+
+    <Button
+        android:id="@+id/launch"
+        android:layout_width="205dp"
+        android:layout_height="99dp"
+        android:text="Lancer"
+        android:textSize="30sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200px"
+        />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="70dp"
+        android:layout_height="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <ListView
+        android:id="@+id/list_bt"
+        android:layout_width="match_parent"
+        android:layout_height="600px"
+
+        android:layout_above="@+id/launch"/>
+
+
+
+    <Button
+        android:id="@+id/btnFindUnpairedDevices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/visible_bt"
+        android:layout_alignParentRight="true"
+        android:text="Discover"
+        android:onClick="btnDiscover"
+        />
+
+    <ListView
+        android:layout_below="@id/btnFindUnpairedDevices"
+        android:layout_alignParentLeft="true"
+        android:layout_width="200dp"
+        android:layout_height="400dp"
+        android:id="@+id/lvNameNewDevices"/>
+
+    <ListView
+        android:layout_below="@id/btnFindUnpairedDevices"
+        android:layout_alignParentRight="true"
+        android:layout_width="200dp"
+        android:layout_height="400dp"
+        android:id="@+id/lvAddressNewDevices"/>
+
+
+</RelativeLayout>

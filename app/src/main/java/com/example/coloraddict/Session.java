@@ -68,6 +68,15 @@ public class Session {
     }
 
     /**
+     * method to get the middle stack of the session
+     * @return a copy of the card
+     */
+    public Card getStack () {
+        return this.middleStack;
+    }
+
+
+    /**
      * method to initialize the middle stack with a card of the deck before starting the game
      */
     public void initializeMiddleStack() {

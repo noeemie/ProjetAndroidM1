@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.coloraddict">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,12 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ColorAddict">
         <activity android:name=".PseudoActivity"></activity>
-        <activity android:name=".ModeActivity" />
-        <activity android:name=".MenuActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".ScoreActivity" />
         <activity android:name=".RulesActivity" />
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".BluetoothActivity"/>
+        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".MenuActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

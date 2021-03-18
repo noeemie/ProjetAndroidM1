@@ -26,28 +26,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/titreRegleClassique"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="36sp" />
 
         <TextView
             android:id="@+id/regleClassique"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/regleClassique" />
+            android:text="@string/regleClassique"
+            android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/titreRegleExpert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/titreRegleExpert"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <TextView
-            android:id="@+id/regleExpert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/regleExpert" />
 
         <Button
             android:id="@+id/regleMenu"
@@ -57,6 +47,8 @@
             android:text="@string/menu"
             android:textAlignment="center"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goToMenu"
+            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,15 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
     }
 
-    public void goToActivity(View v){
-        startActivity(new Intent(MenuActivity.this, ModeActivity.class));
+    public void goToRules(View v){
+        startActivity(new Intent(MenuActivity.this, RulesActivity.class));
+    }
+
+    public void goToSettings(View v){
+        startActivity(new Intent(MenuActivity.this, SettingsActivity.class));
+    }
+
+    public void goToPseudo(View v){
+        startActivity(new Intent(MenuActivity.this, PseudoActivity.class));
     }
 }

@@ -18,7 +18,9 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            android:text="@string/cardStack"
+            android:text="VERT"
+            android:textColor="#3F51B5"
+            android:textStyle="bold"
             app:strokeColor="@color/black"
             app:strokeWidth="2dp" />
 
@@ -32,7 +34,48 @@
                 android:id="@+id/layoutHand"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal" />
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/button11"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#AAAAAAAA"
+                    android:text="Vert"
+                    android:textColor="#FFEB3B"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#AAAAAAAA"
+                    android:text="ROUGE"
+                    android:textColor="#4CAF50"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#AAAAAAAA"
+                    android:text="Jaune"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#AAAAAAAA"
+                    android:text="Rouge"
+                    android:textColor="#3F51B5"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </HorizontalScrollView>
 
         <Button
