@@ -14,7 +14,7 @@ public class SettingsActivity extends AppCompatActivity {
     private Switch mSoundSwitch;
     private Button mMenuButton;
 
-    public void goToMenu2(View v){
+    public void goToMenuFromSettings(View v){
         startActivity(new Intent(SettingsActivity.this, MenuActivity.class));
     }
 

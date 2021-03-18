@@ -1,3 +1,8 @@
+/**
+ * @author Lucas Marc-Martin
+ * @date 18.03.2021
+ */
+
 package com.example.coloraddict;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +37,9 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(new Intent(MenuActivity.this, PseudoActivity.class));
     }
 
+    /**
+     * Start the background music
+     */
     public void PlayBackgroundSound() {
         Intent intent = new Intent(MenuActivity.this, BackgroundSoundService.class);
         startService(intent);

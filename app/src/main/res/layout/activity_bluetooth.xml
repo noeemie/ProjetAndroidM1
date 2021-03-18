@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name_bt"
-        android:text="nom bluetooth"
+        android:text="OnePlus A6013"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:textSize="20sp"
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/visible_bt"
         android:layout_alignParentRight="true"
-        android:text="Discover"
+        android:text="Découvrir"
         android:onClick="btnDiscover"
         />
 

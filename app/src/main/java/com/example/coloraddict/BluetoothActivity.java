@@ -1,3 +1,7 @@
+/**
+ * @author Lucas Marc-Martin
+ * @date 18.03.2021
+ */
 package com.example.coloraddict;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,7 +46,7 @@ public class BluetoothActivity extends AppCompatActivity {
     public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
 
     private BluetoothAdapter mBluetoothAdapter;
-    private Button btnEnableDisable_Discoverable;
+    //private Button btnEnableDisable_Discoverable;
 
     private ArrayAdapter adapterName;
     private ArrayAdapter adapterAddress;
@@ -85,6 +89,7 @@ public class BluetoothActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(mBroadcastReceiver1, filter); */
 
+        //Allume ou éteint le bluetooth
         enable_bt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -99,6 +104,7 @@ public class BluetoothActivity extends AppCompatActivity {
             }
         });
 
+        //active la visibilité bluetooth pour 2 min (car consomme bcp de batterie)
         visible_bt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -110,6 +116,7 @@ public class BluetoothActivity extends AppCompatActivity {
             }
         });
 
+        //bouton "bluetooth", affiche les appareils déjà apparés
         search_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -261,7 +268,7 @@ public class BluetoothActivity extends AppCompatActivity {
     */
 
     /**
-     * Function called when the "Discover" button is pressed.
+     * Function called when the "Decouvrir" button is pressed.
      * Display nearby discoverable devices' names and addresses
      */
     public void btnDiscover(View view) {

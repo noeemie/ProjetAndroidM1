@@ -1,3 +1,8 @@
+/**
+ * @author Lucas Marc-Martin
+ * @date 18.03.2021
+ */
+
 package com.example.coloraddict;
 
 import android.app.Service;
@@ -25,6 +30,9 @@ public class BackgroundSoundService extends Service {
         mediaPlayer.setVolume(100, 100);
     }
 
+    /**
+     * Start the background music
+     */
     public int onStartCommand(Intent intent, int flags, int startId) {
         mediaPlayer.start();
         Toast.makeText(getApplicationContext(), "Playing royalty-free music in the Background",    Toast.LENGTH_SHORT).show();

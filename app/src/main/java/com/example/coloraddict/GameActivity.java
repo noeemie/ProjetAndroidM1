@@ -60,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
             session.addPlayer(); // modifier car certain joueurs on des pseudo
         }
         session.initializeMiddleStack();
-        session.initializeSession(); // initialisation des pioches perso de tout les joueurs et inistialisation des cartes --> faire ca quand on appuye sur le bouton pour lancer la partie
+        //session.initializeSession(); // initialisation des pioches perso de tout les joueurs et inistialisation des cartes --> faire ca quand on appuye sur le bouton pour lancer la partie
 
 
         //for (; j < 2; j++) {
@@ -83,89 +83,6 @@ public class GameActivity extends AppCompatActivity {
                 mLayoutHand.addView(card, buttonParams);
 
                 //////////////////retirer le listener
-                card.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {// action de jouer la carte
-                        // reference pour faire le onClick de manière récursive
-                        final View.OnClickListener ref1 = this;
-                        //prendre la carte de la liste
-                        Card cardPlay2 = session.getPlayer(j).getCardHand(i); //récupère la carte ou il y a le listener
-                        // tester si la carte est bonne
-                        if(cardPlay2.isOK(session.getStack())){
-                            // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN
-                            if(session.isFinished()){
-                                // aller a l'écran des scores
-                            }
-                            // mettre son texte dans le bouton du centre
-                            mCardStack.setText(cardPlay2.getNameColor().toString());
-                            // retirer la carte de la main apres l'avoir jouée
-                            mLayoutHand.removeView(card);
-                            if(session.getPlayer(j).getHandSize() < 3){
-                                // picher automatiquement une carte
-                                session.getPlayer(j).getRandomCardStack();
-                                Button newCardPlay1 = new Button(v.getContext());
-                                newCardPlay1.setText(session.getPlayer(j).getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
-                                newCardPlay1.setTextColor(/*session.getPlayer(j).getLastCardHand().getColor()*/RED); // couleur du texte de la carte du joueur
-
-                                newCardPlay1.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {// action de jouer la carte
-                                        //prendre la carte de la liste
-                                        Card cardPlay2 = session.getPlayer(j).getCardHand(i);
-                                        // tester si la carte est bonne
-                                        if(cardPlay2.isOK(session.getStack())){
-                                            // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN
-                                            if(session.isFinished()){
-                                                // aller a l'écran des scores
-                                            }
-                                            // mettre son texte dans le bouton du centre
-                                            mCardStack.setText(session.getPlayer(j).getCardHand(i).getNameColor().toString());
-                                            // retirer la carte de la main apres l'avoir jouée
-                                            mLayoutHand.removeView(card);
-                                            if(session.getPlayer(j).getHandSize() > 3){
-                                                // picher automatiquement une carte
-                                                session.getPlayer(j).getRandomCardStack();
-                                                Button newCardPlay1 = new Button(v.getContext());
-                                                newCardPlay1.setText(session.getPlayer(j).getLastCardHand().getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
-                                                newCardPlay1.setTextColor(/*session.getPlayer(j).getCardHand(i).getColor()*/BLACK); // couleur du texte de la carte du joueur
-
-                                                newCardPlay1.setOnClickListener(ref1);
-
-                                                newCardPlay1.setBackgroundColor(LTGRAY);
-
-                                                LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
-                                                        LinearLayout.LayoutParams.MATCH_PARENT,
-                                                        LinearLayout.LayoutParams.MATCH_PARENT);
-
-                                                mLayoutHand.addView(newCardPlay1, buttonParams);
-                                            }
-                                            // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
-                                            if(session.getPlayer(j).isEmptyHand()){
-                                                session.getPlayer(j).win();
-                                            }
-                                            // faire passer au joueur suivant
-                                            j = (j+1)%2;
-                                        }
-                                    }
-                                });
-
-                                newCardPlay1.setBackgroundColor(LTGRAY);
-
-                                LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
-                                        LinearLayout.LayoutParams.MATCH_PARENT,
-                                        LinearLayout.LayoutParams.MATCH_PARENT);
-
-                                mLayoutHand.addView(newCardPlay1, buttonParams);
-                            }
-                            // apres avoir joué on regarde si il reste encore des cartes et si non on a gagné
-                            if(session.getPlayer(j).isEmptyHand()){
-                                session.getPlayer(j).win();
-                            }
-                            // faire passer au joueur suivant
-                            j++;
-                        }
-                    }
-                });
 
 
             }

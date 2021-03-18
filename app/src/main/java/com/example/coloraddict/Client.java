@@ -1,3 +1,8 @@
+/**
+ * @author Lucas Marc-Martin
+ * @date 18.03.2021
+ */
+
 /*
 package com.example.coloraddict;
 
