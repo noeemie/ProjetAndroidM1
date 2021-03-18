@@ -305,4 +305,8 @@ public class BluetoothActivity extends AppCompatActivity {
             Log.d("BluetoothActivity", "checkBTPermissions: No need to check permissions. SDK version < LOLLIPOP.");
         }
     }
+
+    public void goToGame(View v){
+        startActivity(new Intent(BluetoothActivity.this, GameActivity.class));
+    }
 }

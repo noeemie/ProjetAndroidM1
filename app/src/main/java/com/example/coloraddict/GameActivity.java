@@ -53,7 +53,7 @@ public class GameActivity extends AppCompatActivity {
         session.reset(); // pour remettre a 0 le nombre de joueurs (variable de classe)
         //recuperer le nombre de joueurs pour la partir grace a la page en question --> faire ca quand on appuye sur le bouton pour ajouter des joueurs
         int i;
-        for(i = 0; i < session.getNbPlayers(); i++){
+        for(i = 0; i < 2; i++){
             session.addPlayer(); // modifier car certain joueurs on des pseudo
         }
         session.initializeMiddleStack();
@@ -61,13 +61,13 @@ public class GameActivity extends AppCompatActivity {
 
         int playerInt = 0;
         /*
-        while(true){
+        for (int j = 0; j < 2; j++) {
             ////////////////////////////////////////// initialiser l'ecran de jeu avec les cartes du joueur ////////////////////////////////
             // ajout dynamic de boutons dans la main
-            for (i = 0; i < session.getPlayer(playerInt).getHandSize(); i++) {
+            for (i = 0; i < session.getPlayer(j).getHandSize(); i++) {
 
                 final Button card = new Button(this);
-                card.setText(session.getPlayer(playerInt).getCardHand(i).getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                card.setText(session.getPlayer(j).getCardHand(i).getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
                 card.setId(i + 1);
                 card.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -75,7 +75,7 @@ public class GameActivity extends AppCompatActivity {
                         // reference pour faire le onClick de manière récursive
                         final View.OnClickListener ref1 = this;
                         //prendre la carte de la liste
-                        Card cardPlay2 = session.getPlayer(playerInt).getCardHand(); //récupère la carte ou il y a le listener
+                        Card cardPlay2 = session.getPlayer(j).getCardHand(); //récupère la carte ou il y a le listener
                         // tester si la carte est bonne
                         if(cardPlay2.isOK(session.getStack())){
                             // la partie ne s'arrete que quand les n-1 joueurs ont le statut WIN
@@ -83,7 +83,7 @@ public class GameActivity extends AppCompatActivity {
                                 // aller a l'écran des scores
                             }
                             // mettre son texte dans le bouton du centre
-                            mCardStack.setText(session.getPlayer(playerInt).getCardHand().getNameColor().toString());
+                            mCardStack.setText(session.getPlayer(j).getCardHand().getNameColor().toString());
                             // retirer la carte de la main apres l'avoir jouée
                             mLayoutHand.removeView(card);
                             if(session.getPlayer(playerInt).getHandSize() < 3){

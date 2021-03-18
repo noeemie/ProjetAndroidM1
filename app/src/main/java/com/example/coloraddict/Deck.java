@@ -11,7 +11,7 @@ import java.util.Random;
 public class Deck {
 
     private static Deck _instance = null;
-    private static int size = 110;
+    private static int size = 20;
 
     private ArrayList cards;
 

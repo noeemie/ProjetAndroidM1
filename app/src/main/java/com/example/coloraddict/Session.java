@@ -120,8 +120,12 @@ public class Session {
      * method to get the next player of the list
      * @return the next item of the list
      */
-    public Player nextPlayer(){
+    public Player nextPlayer(int i){
+        /*
         Iterator<Player> it = players.iterator();
-        return it.next();
+        return it.next(); */
+        return players.get((i+1)%2);
     }
+
+
 }
