@@ -56,28 +56,33 @@ public class GameActivity extends AppCompatActivity {
         session.reset(); // pour remettre a 0 le nombre de joueurs (variable de classe)
         //recuperer le nombre de joueurs pour la partir grace a la page en question --> faire ca quand on appuye sur le bouton pour ajouter des joueurs
         int a;
-        for(a = 0; i < 2; i++){
+        for(a = 0; a < 2; a++){
             session.addPlayer(); // modifier car certain joueurs on des pseudo
         }
         session.initializeMiddleStack();
         session.initializeSession(); // initialisation des pioches perso de tout les joueurs et inistialisation des cartes --> faire ca quand on appuye sur le bouton pour lancer la partie
 
 
-        for (; j < 2; j++) {
+        //for (; j < 2; j++) {
             ////////////////////////////////////////// initialiser l'ecran de jeu avec les cartes du joueur ////////////////////////////////
             // ajout dynamic de boutons dans la main
-            for (; i < session.getPlayer(j).getHandSize(); i++) {
+            //for (; i < session.getPlayer(j).getHandSize(); i++) {
+            for(; i < 5; i++){
 
                 final Button card = new Button(this);
-                card.setText(session.getPlayer(j).getCardHand(i).getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                //card.setText(session.getPlayer(j).getCardHand(i).getNameColor().toString()); // aller chercher la carte dans la liste du joueur en train de jouer
+                card.setText("carte");
                 card.setId(i + 1);
                 card.setBackgroundColor(LTGRAY);
-                card.setTextColor(/*session.getPlayer(j).getCardHand(i).getColor()*/ RED); // couleur du texte de la carte du joueur
+                //card.setTextColor(/*session.getPlayer(j).getCardHand(i).getColor()*/ RED); // couleur du texte de la carte du joueur
 
                 LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
 
+                mLayoutHand.addView(card, buttonParams);
+
+                //////////////////retirer le listener
                 card.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {// action de jouer la carte
@@ -157,14 +162,15 @@ public class GameActivity extends AppCompatActivity {
                                 session.getPlayer(j).win();
                             }
                             // faire passer au joueur suivant
-
+                            j++;
                         }
                     }
                 });
-                mLayoutHand.addView(card, buttonParams);
+
+
             }
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        }
+        //}
 
         /*mDrawACard.setOnClickListener(new View.OnClickListener() {
             @Override

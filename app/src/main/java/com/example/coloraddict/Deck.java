@@ -37,18 +37,18 @@ public class Deck {
         return _instance;
     }
 
-    // probleme car il faut retirer les cartes après les avoir prise pour eviter doublons -> regarder si ca ne trouche pas au deck mais plutot a l'instance
     /**
      * method to take a card in the deck randomly
      * @return card a card of the deck
      */
     public Card getRandomCard () {
-        Card card = null;
-        if(!cards.isEmpty()){
-            int index = randomGenerator.nextInt(cards.size());
-            card = (Card) cards.get(index);
-            cards.remove(index);
-        }
+        //if(!cards.isEmpty()){
+           // int index = randomGenerator.nextInt(cards.size());
+            //Card card = (Card) cards.get(index);
+            //cards.remove(index);
+        //}
+        Card card = (Card) cards.get(1);
+        cards.remove(1);
         return card;
     }
 
