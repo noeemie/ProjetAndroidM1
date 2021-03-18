@@ -130,7 +130,7 @@ public class BluetoothActivity extends AppCompatActivity {
         Log.d("BluetoothActivity", "onDestroy: called.");
         super.onDestroy();
         unregisterReceiver(receiver);
-        mBluetoothAdapter.cancelDiscovery();
+        mBluetoothAdapter.cancelDiscovery(); //car ça vide la batterie
         //unregisterReceiver(mBroadcastReceiver3);
         //mBluetoothAdapter.cancelDiscovery();
     }
@@ -297,6 +297,7 @@ public class BluetoothActivity extends AppCompatActivity {
      * This method is required for all devices running API23+
      * Android must programmatically check the permissions for bluetooth. Putting the proper permissions
      * in the manifest is not enough.
+     * We were stuck on the bluetooth for some time because of that
      *
      * NOTE: This will only execute on versions > LOLLIPOP because it is not needed otherwise.
      */
