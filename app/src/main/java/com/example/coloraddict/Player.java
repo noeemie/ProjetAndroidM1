@@ -46,7 +46,7 @@ public class Player {
      */
     public void initializeCardStack(Session session) {
         int i;
-        for (i = 0; i < (session.getDeck().getSize() / nbPlayers); i++) { // faire anttention quand il y a un chiffre impaire de carte/ nombre pair de joueur et inversement
+        for (i = 0; i < (session.getDeck().getSize() / nbPlayers); i++) { // faire attention quand il y a un chiffre impaire de carte/ nombre pair de joueur et inversement
             cardStack.add(session.getDeck().getRandomCard());
         }
     }
